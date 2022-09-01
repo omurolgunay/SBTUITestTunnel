@@ -1,6 +1,20 @@
-runs-on: macos-latest
-steps:
-  - uses: actions/checkout@v3
+name: Create Release
 
-  - name: Create XCFramework
-    uses: unsignedapps/swift-create-xcframework@v2.3.0
+# Create XCFramework when a version is tagged
+on:
+  push:
+    tags:
+
+jobs:
+  create_release:
+    name: Create Release
+    runs-on: macos-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Create XCFramework
+        uses: unsignedapps/swift-create-xcframework@v2.3.0
+
+      # Create a release
+      # Upload those artifacts to the release
